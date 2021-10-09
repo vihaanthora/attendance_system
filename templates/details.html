@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+      crossorigin="anonymous"
+    />
+    <title>Attendance System</title>
+  </head>
+  <body style="background-color: #dfdddd;">
+    <section>
+      <div class="container-fluid text-light mt-4">
+        <div class="row justify-content-center">
+          <div
+            class="
+              col-12 col-sm-10 col-md-8 col-lg-8 col-xl-6
+              bg-dark
+              rounded-3
+              p-4
+            "
+          >
+          <div class="row justify-content-center rounded-bottom">
+            <div class="m-1 px-4 d-flex justify-content-start">
+              <a href="{{ url_for('logout') }}" >
+                <button class="btn btn-primary">
+                  Back
+                </button>
+              </a>
+            </div>
+          </div>
+            <h1 class="text-center mt-4 mb-3">IIT Indore</h1>
+            <h3 class="text-center mb-5">Attendance Review</h3>
+            <h5 class="pt-4 mb-4">The following students were absent</h5>
+
+            <table class="table table-dark">
+              <thead>
+                <tr>
+                  <th scope="col">Roll Number</th>
+                  <th scope="col">Name</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for key, value in absent_dict.items() %}
+                  
+                <tr>
+                  <td>{{key}}</td>
+                  <td class="text-uppercase">{{value}}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            <h5 class="pt-4 mb-4">The following students put proxy attendance</h5>
+
+            <table class="table table-dark">
+              <thead>
+                <tr>
+                  <th scope="col">
+                    Roll Number
+                  </th>
+                  <th scope="col">
+                    Proxy Done By
+                  </th>
+                  <th scope="col">Of</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for index in proxy_list %}
+                <tr>
+                  <td class="text-uppercase">{{index[0]}}</td>
+                  <td class="text-uppercase">{{index[1]}}</td>
+                  <td class="text-uppercase">{{index[2]}}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            <div class="row justify-content-center rounded-bottom">
+              <div class="m-1 px-4 d-flex justify-content-end">
+                <a href="{{ url_for('get_csv') }}" >
+                  <button class="btn btn-primary">
+                    Download Attendance
+                  </button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+      
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
